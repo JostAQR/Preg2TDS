@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -7,8 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Gestión de Estudiantes</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <title>Gestión de Clientes</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <style>
@@ -41,13 +39,20 @@
                 z-index: 1101 !important;
                 position: absolute;
             }
+            .alert.position-fixed {
+                top: 80px;
+                right: 20px;
+                z-index: 9999;
+                min-width: 300px;
+                max-width: 500px;
+            }
         </style>
     </head>
 
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark fixed-top">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="principal.html">Sistema Estudiantes</a>
+            <a class="navbar-brand ps-3" href="#">Sistema de Clientes</a>
 
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 text-white" id="sidebarToggle">
@@ -61,7 +66,7 @@
                        data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-user fa-fw"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="z-index: 1101; position: absolute;">
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">Cambiar contraseña</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="#!" onclick="cerrarSesion()">Logout</a></li>
@@ -75,9 +80,9 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark bg-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <a class="nav-link active" href="principal.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Gestión de estudiantes 
+                            <a class="nav-link active" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                Gestión de Clientes
                             </a>
                         </div>
                     </div>
@@ -87,26 +92,26 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">GESTIÓN DE ESTUDIANTES 🧑‍🎓</h1>
+                        <h1 class="mt-4">GESTIÓN DE CLIENTES</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Estudiantes</li>
+                            <li class="breadcrumb-item active">Clientes</li>
                         </ol>
 
-                        <!-- Botón para agregar nuevo estudiante -->
+                        <!-- Botón para agregar nuevo cliente -->
                         <div class="mb-3">
-                            <button type="button" class="btn btn-primary" onclick="nuevoEstudiante()">
-                                <i class="fas fa-plus"></i> Nuevo Estudiante
+                            <button type="button" class="btn btn-primary" onclick="nuevoCliente()">
+                                <i class="fas fa-plus"></i> Nuevo Cliente
                             </button>
                         </div>
 
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Lista de estudiantes
+                                Lista de Clientes
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="tablaEstudiantes" class="table table-striped table-hover">
+                                    <table id="tablaClientes" class="table table-striped table-hover">
                                         <thead class="table-dark">
                                             <tr>
                                                 <th>ID</th>
@@ -121,7 +126,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td colspan="8" class="text-center">Cargando estudiantes...</td>
+                                                <td colspan="8" class="text-center">Cargando clientes...</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -134,24 +139,24 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Sistema de Estudiantes 2024</div>
+                            <div class="text-muted">Copyright &copy; Sistema de Clientes 2024</div>
                         </div>
                     </div>
                 </footer>
             </div>
         </div>
 
-        <!-- Modal para Crear/Editar Estudiante -->
-        <div class="modal fade" id="estudianteModal" tabindex="-1" aria-labelledby="estudianteModalLabel" aria-hidden="true">
+        <!-- Modal para Crear/Editar Cliente -->
+        <div class="modal fade" id="clienteModal" tabindex="-1" aria-labelledby="clienteModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="estudianteModalLabel">Nuevo Estudiante</h5>
+                        <h5 class="modal-title" id="clienteModalLabel">Nuevo Cliente</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form id="estudianteForm">
+                    <form id="clienteForm">
                         <div class="modal-body">
-                            <input type="hidden" id="estudianteId" name="estudianteId">
+                            <input type="hidden" id="clienteId" name="clienteId">
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -206,7 +211,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary" onclick="guardarEstudiante()">Guardar</button>
+                            <button type="button" class="btn btn-primary" onclick="guardarCliente()">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -222,8 +227,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>¿Está seguro de que desea eliminar al estudiante:</p>
-                        <p><strong id="estudianteEliminar"></strong></p>
+                        <p>¿Está seguro de que desea eliminar al cliente:</p>
+                        <p><strong id="clienteEliminar"></strong></p>
                         <p class="text-danger">Esta acción no se puede deshacer.</p>
                     </div>
                     <div class="modal-footer">
@@ -258,16 +263,16 @@
 
         <script>
                             // VARIABLES GLOBALES
-                            let idEstudianteEliminar = 0;
+                            let idClienteEliminar = 0;
                             let modoEdicion = false;
-                            let estudiantes = [];
+                            let clientes = [];
 
                             // INICIALIZAR PÁGINA CUANDO SE CARGA
                             document.addEventListener('DOMContentLoaded', function () {
                                 console.log('Página cargada, iniciando...');
 
-                                // CARGAR ESTUDIANTES AL INICIAR
-                                cargarEstudiantes();
+                                // CARGAR CLIENTES AL INICIAR
+                                cargarClientes();
 
                                 // CONFIGURAR VALIDACIONES DEL FORMULARIO
                                 configurarValidaciones();
@@ -311,12 +316,13 @@
                                     fechaNacInput.setAttribute('max', hoy);
                                 }
                             }
-                            // FUNCIÓN PARA CARGAR ESTUDIANTES
-                            function cargarEstudiantes() {
-                                console.log('Cargando estudiantes...');
+
+                            // FUNCIÓN PARA CARGAR CLIENTES
+                            function cargarClientes() {
+                                console.log('Cargando clientes...');
 
                                 // Mostrar mensaje de carga
-                                actualizarTablaConMensaje('Cargando estudiantes...');
+                                actualizarTablaConMensaje('Cargando clientes...');
 
                                 fetch('estudiante', {
                                     method: 'GET',
@@ -337,63 +343,63 @@
 
                                             // Manejar diferentes formatos de respuesta
                                             if (data.success && Array.isArray(data.data)) {
-                                                estudiantes = data.data;
+                                                clientes = data.data;
                                             } else if (Array.isArray(data)) {
-                                                estudiantes = data;
+                                                clientes = data;
                                             } else {
                                                 throw new Error('Formato de datos incorrecto: ' + JSON.stringify(data));
                                             }
 
-                                            renderEstudiantesTable();
+                                            renderClientesTable();
                                         })
                                         .catch(error => {
-                                            console.error('Error al cargar estudiantes:', error);
-                                            actualizarTablaConMensaje('Error al cargar estudiantes: ' + error.message);
-                                            mostrarAlerta('Error al cargar los estudiantes: ' + error.message, 'danger');
+                                            console.error('Error al cargar clientes:', error);
+                                            actualizarTablaConMensaje('Error al cargar clientes: ' + error.message);
+                                            mostrarAlerta('Error al cargar los clientes: ' + error.message, 'danger');
                                         });
                             }
 
                             // FUNCIÓN PARA ACTUALIZAR TABLA CON MENSAJE
                             function actualizarTablaConMensaje(mensaje) {
-                                const tbody = document.getElementById('tablaEstudiantes');
+                                const tbody = document.querySelector('#tablaClientes tbody');
                                 if (tbody) {
                                     tbody.innerHTML = `<tr><td colspan="8" class="text-center">${mensaje}</td></tr>`;
                                 }
                             }
 
-                            // FUNCIÓN PARA RENDERIZAR TABLA DE ESTUDIANTES
-                            function renderEstudiantesTable() {
-                                const tbody = document.getElementById('tablaEstudiantes');
+                            // FUNCIÓN PARA RENDERIZAR TABLA DE CLIENTES
+                            function renderClientesTable() {
+                                const tbody = document.querySelector('#tablaClientes tbody');
 
                                 if (!tbody) {
-                                    console.error('Elemento tablaEstudiantes no encontrado');
+                                    console.error('Elemento tbody de tablaClientes no encontrado');
                                     return;
                                 }
 
-                                if (!estudiantes || estudiantes.length === 0) {
-                                    tbody.innerHTML = '<tr><td colspan="8" class="text-center">No hay estudiantes registrados</td></tr>';
+                                if (!clientes || clientes.length === 0) {
+                                    tbody.innerHTML = '<tr><td colspan="8" class="text-center">No hay clientes registrados</td></tr>';
                                     return;
                                 }
 
                                 let html = '';
-                                estudiantes.forEach(estudiante => {
-                                    const fechaFormateada = formatearFecha(estudiante.fechNaciEstdWeb);
-                                    const nombreCompleto = `${estudiante.nombEstdWeb || ''} ${estudiante.appaEstdWeb || ''} ${estudiante.apmaEstdWeb || ''}`.trim();
+                                clientes.forEach(cliente => {
+                                    const fechaFormateada = formatearFecha(cliente.fechNaciClie);
+                                    const nombreCompleto = `${cliente.nombClie || ''} ${cliente.appaClie || ''} ${cliente.apmaClie || ''}`.trim();
 
                                     html += `
                         <tr>
-                            <td>${estudiante.codiEstdWeb || ''}</td>
-                            <td>${estudiante.ndniEstdWeb || ''}</td>
-                            <td>${estudiante.appaEstdWeb || ''}</td>
-                            <td>${estudiante.apmaEstdWeb || ''}</td>
-                            <td>${estudiante.nombEstdWeb || ''}</td>
+                            <td>${cliente.codiClie || ''}</td>
+                            <td>${cliente.ndniClie || ''}</td>
+                            <td>${cliente.appaClie || ''}</td>
+                            <td>${cliente.apmaClie || ''}</td>
+                            <td>${cliente.nombClie || ''}</td>
                             <td>${fechaFormateada}</td>
-                            <td>${estudiante.logiEstd || ''}</td>
+                            <td>${cliente.logiClie || ''}</td>
                             <td>
-                                <button class="btn btn-sm btn-warning me-1" onclick="editarEstudiante(${estudiante.codiEstdWeb})" title="Editar">
+                                <button class="btn btn-sm btn-warning me-1" onclick="editarCliente(${cliente.codiClie})" title="Editar">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn btn-sm btn-danger" onclick="eliminarEstudiante(${estudiante.codiEstdWeb}, '${nombreCompleto.replace(/'/g, "\\'")}');" title="Eliminar">
+                                <button class="btn btn-sm btn-danger" onclick="eliminarCliente(${cliente.codiClie}, '${nombreCompleto.replace(/'/g, "\\'")}');" title="Eliminar">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </td>
@@ -402,7 +408,7 @@
                                 });
 
                                 tbody.innerHTML = html;
-                                console.log('Tabla renderizada correctamente con', estudiantes.length, 'estudiantes');
+                                console.log('Tabla renderizada correctamente con', clientes.length, 'clientes');
                             }
 
                             // FUNCIÓN PARA FORMATEAR FECHA
@@ -411,11 +417,9 @@
                                     return 'N/A';
 
                                 try {
-                                    // Manejar diferentes formatos de fecha
                                     let fechaObj;
 
                                     if (typeof fecha === 'string') {
-                                        // Si viene como string YYYY-MM-DD
                                         fechaObj = new Date(fecha + 'T00:00:00');
                                     } else {
                                         fechaObj = new Date(fecha);
@@ -437,50 +441,50 @@
                                 }
                             }
 
-                            // FUNCIÓN PARA NUEVO ESTUDIANTE
-                            function nuevoEstudiante() {
-                                console.log('Abriendo modal para nuevo estudiante');
+                            // FUNCIÓN PARA NUEVO CLIENTE
+                            function nuevoCliente() {
+                                console.log('Abriendo modal para nuevo cliente');
                                 limpiarFormulario();
                                 modoEdicion = false;
-                                document.getElementById('estudianteModalLabel').textContent = 'Nuevo Estudiante';
+                                document.getElementById('clienteModalLabel').textContent = 'Nuevo Cliente';
 
-                                const modal = new bootstrap.Modal(document.getElementById('estudianteModal'));
+                                const modal = new bootstrap.Modal(document.getElementById('clienteModal'));
                                 modal.show();
                             }
 
                             // FUNCIÓN PARA LIMPIAR FORMULARIO
                             function limpiarFormulario() {
-                                const form = document.getElementById('estudianteForm');
+                                const form = document.getElementById('clienteForm');
                                 if (form) {
                                     form.reset();
                                 }
 
-                                document.getElementById('estudianteId').value = '';
+                                document.getElementById('clienteId').value = '';
 
                                 // Limpiar validaciones visuales
-                                const inputs = document.querySelectorAll('#estudianteForm .form-control');
+                                const inputs = document.querySelectorAll('#clienteForm .form-control');
                                 inputs.forEach(input => {
                                     input.classList.remove('is-valid', 'is-invalid');
                                 });
                             }
 
-                            // FUNCIÓN PARA EDITAR ESTUDIANTE
-                            function editarEstudiante(id) {
-                                console.log('Editando estudiante con ID:', id);
+                            // FUNCIÓN PARA EDITAR CLIENTE
+                            function editarCliente(id) {
+                                console.log('Editando cliente con ID:', id);
 
-                                const estudiante = estudiantes.find(e => e.codiEstdWeb == id);
+                                const cliente = clientes.find(c => c.codiClie == id);
 
-                                if (estudiante) {
-                                    // Llenar formulario con datos del estudiante
-                                    document.getElementById('estudianteId').value = estudiante.codiEstdWeb || '';
-                                    document.getElementById('dni').value = estudiante.ndniEstdWeb || '';
-                                    document.getElementById('apPaterno').value = estudiante.appaEstdWeb || '';
-                                    document.getElementById('apMaterno').value = estudiante.apmaEstdWeb || '';
-                                    document.getElementById('nombre').value = estudiante.nombEstdWeb || '';
+                                if (cliente) {
+                                    // Llenar formulario con datos del cliente
+                                    document.getElementById('clienteId').value = cliente.codiClie || '';
+                                    document.getElementById('dni').value = cliente.ndniClie || '';
+                                    document.getElementById('apPaterno').value = cliente.appaClie || '';
+                                    document.getElementById('apMaterno').value = cliente.apmaClie || '';
+                                    document.getElementById('nombre').value = cliente.nombClie || '';
 
                                     // Formatear fecha para input date (YYYY-MM-DD)
-                                    if (estudiante.fechNaciEstdWeb) {
-                                        let fechaFormateada = estudiante.fechNaciEstdWeb;
+                                    if (cliente.fechNaciClie) {
+                                        let fechaFormateada = cliente.fechNaciClie;
                                         if (typeof fechaFormateada === 'string' && fechaFormateada.includes('/')) {
                                             // Convertir DD/MM/YYYY a YYYY-MM-DD
                                             const partes = fechaFormateada.split('/');
@@ -491,27 +495,27 @@
                                         document.getElementById('fechaNac').value = fechaFormateada;
                                     }
 
-                                    document.getElementById('login').value = estudiante.logiEstd || '';
-                                    document.getElementById('password').value = estudiante.passEstd || '';
+                                    document.getElementById('login').value = cliente.logiClie || '';
+                                    document.getElementById('password').value = cliente.passClie || '';
 
                                     // Configurar modo edición
                                     modoEdicion = true;
-                                    document.getElementById('estudianteModalLabel').textContent = 'Editar Estudiante';
+                                    document.getElementById('clienteModalLabel').textContent = 'Editar Cliente';
 
                                     // Mostrar modal
-                                    const modal = new bootstrap.Modal(document.getElementById('estudianteModal'));
+                                    const modal = new bootstrap.Modal(document.getElementById('clienteModal'));
                                     modal.show();
                                 } else {
-                                    console.error('Estudiante no encontrado con ID:', id);
-                                    mostrarAlerta('Estudiante no encontrado', 'danger');
+                                    console.error('Cliente no encontrado con ID:', id);
+                                    mostrarAlerta('Cliente no encontrado', 'danger');
                                 }
                             }
 
-                            // FUNCIÓN PARA GUARDAR ESTUDIANTE
-                            function guardarEstudiante() {
-                                console.log('Iniciando guardado de estudiante...');
+                            // FUNCIÓN PARA GUARDAR CLIENTE
+                            function guardarCliente() {
+                                console.log('Iniciando guardado de cliente...');
 
-                                const form = document.getElementById('estudianteForm');
+                                const form = document.getElementById('clienteForm');
 
                                 // Validar formulario
                                 if (!form.checkValidity()) {
@@ -529,20 +533,20 @@
 
                                 // Obtener datos del formulario
                                 const formData = {
-                                    ndniEstdWeb: dni,
-                                    appaEstdWeb: document.getElementById('apPaterno').value.trim(),
-                                    apmaEstdWeb: document.getElementById('apMaterno').value.trim(),
-                                    nombEstdWeb: document.getElementById('nombre').value.trim(),
-                                    fechNaciEstdWeb: document.getElementById('fechaNac').value,
-                                    logiEstd: document.getElementById('login').value.trim(),
-                                    passEstd: document.getElementById('password').value
+                                    ndniClie: dni,
+                                    appaClie: document.getElementById('apPaterno').value.trim(),
+                                    apmaClie: document.getElementById('apMaterno').value.trim(),
+                                    nombClie: document.getElementById('nombre').value.trim(),
+                                    fechNaciClie: document.getElementById('fechaNac').value,
+                                    logiClie: document.getElementById('login').value.trim(),
+                                    passClie: document.getElementById('password').value
                                 };
 
                                 // Agregar ID si está en modo edición
                                 if (modoEdicion) {
-                                    const id = document.getElementById('estudianteId').value;
+                                    const id = document.getElementById('clienteId').value;
                                     if (id) {
-                                        formData.codiEstdWeb = parseInt(id);
+                                        formData.codiClie = parseInt(id);
                                     }
                                 }
 
@@ -571,33 +575,33 @@
                                             console.log('Respuesta del servidor:', data);
 
                                             if (data.success) {
-                                                mostrarAlerta(data.message || 'Estudiante guardado correctamente', 'success');
+                                                mostrarAlerta(data.message || 'Cliente guardado correctamente', 'success');
 
                                                 // Cerrar modal
-                                                const modal = bootstrap.Modal.getInstance(document.getElementById('estudianteModal'));
+                                                const modal = bootstrap.Modal.getInstance(document.getElementById('clienteModal'));
                                                 if (modal) {
                                                     modal.hide();
                                                 }
 
                                                 // Recargar lista
                                                 setTimeout(() => {
-                                                    cargarEstudiantes();
+                                                    cargarClientes();
                                                 }, 500);
                                             } else {
                                                 mostrarAlerta('Error: ' + (data.message || 'Error desconocido'), 'danger');
                                             }
                                         })
                                         .catch(error => {
-                                            console.error('Error al guardar estudiante:', error);
-                                            mostrarAlerta('Error al guardar el estudiante: ' + error.message, 'danger');
+                                            console.error('Error al guardar cliente:', error);
+                                            mostrarAlerta('Error al guardar el cliente: ' + error.message, 'danger');
                                         });
                             }
 
-                            // FUNCIÓN PARA ELIMINAR ESTUDIANTE
-                            function eliminarEstudiante(id, nombre) {
-                                console.log('Preparando eliminación de estudiante:', id, nombre);
-                                idEstudianteEliminar = id;
-                                document.getElementById('estudianteEliminar').textContent = nombre || 'Estudiante seleccionado';
+                            // FUNCIÓN PARA ELIMINAR CLIENTE
+                            function eliminarCliente(id, nombre) {
+                                console.log('Preparando eliminación de cliente:', id, nombre);
+                                idClienteEliminar = id;
+                                document.getElementById('clienteEliminar').textContent = nombre || 'Cliente seleccionado';
 
                                 const modal = new bootstrap.Modal(document.getElementById('eliminarModal'));
                                 modal.show();
@@ -605,14 +609,14 @@
 
                             // FUNCIÓN PARA CONFIRMAR ELIMINACIÓN
                             function confirmarEliminar() {
-                                if (!idEstudianteEliminar) {
-                                    mostrarAlerta('Error: ID de estudiante no válido', 'danger');
+                                if (!idClienteEliminar) {
+                                    mostrarAlerta('Error: ID de cliente no válido', 'danger');
                                     return;
                                 }
 
-                                console.log('Confirmando eliminación de estudiante ID:', idEstudianteEliminar);
+                                console.log('Confirmando eliminación de cliente ID:', idClienteEliminar);
 
-                                fetch(`estudiante?codiEstdWeb=${idEstudianteEliminar}`, {
+                                fetch(`estudiante?codiClie=${idClienteEliminar}`, {
                                     method: 'DELETE',
                                     headers: {
                                         'Content-Type': 'application/json',
@@ -630,7 +634,7 @@
                                             console.log('Respuesta del servidor:', data);
 
                                             if (data.success) {
-                                                mostrarAlerta(data.message || 'Estudiante eliminado correctamente', 'success');
+                                                mostrarAlerta(data.message || 'Cliente eliminado correctamente', 'success');
 
                                                 // Cerrar modal
                                                 const modal = bootstrap.Modal.getInstance(document.getElementById('eliminarModal'));
@@ -640,18 +644,18 @@
 
                                                 // Recargar lista
                                                 setTimeout(() => {
-                                                    cargarEstudiantes();
+                                                    cargarClientes();
                                                 }, 500);
 
                                                 // Resetear ID
-                                                idEstudianteEliminar = 0;
+                                                idClienteEliminar = 0;
                                             } else {
                                                 mostrarAlerta('Error: ' + (data.message || 'Error desconocido'), 'danger');
                                             }
                                         })
                                         .catch(error => {
-                                            console.error('Error al eliminar estudiante:', error);
-                                            mostrarAlerta('Error al eliminar estudiante: ' + error.message, 'danger');
+                                            console.error('Error al eliminar cliente:', error);
+                                            mostrarAlerta('Error al eliminar cliente: ' + error.message, 'danger');
                                         });
                             }
 
@@ -664,7 +668,6 @@
                                 // Crear elemento de alerta
                                 const alerta = document.createElement('div');
                                 alerta.className = `alert alert-${tipo} alert-dismissible fade show position-fixed`;
-                                alerta.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px; max-width: 500px;';
 
                                 // Iconos según el tipo
                                 const iconos = {
@@ -718,5 +721,4 @@
                             }
         </script>
     </body>
-
 </html>
