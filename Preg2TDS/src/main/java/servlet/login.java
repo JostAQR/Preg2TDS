@@ -20,21 +20,21 @@ import org.json.JSONObject;
  */
 @WebServlet(name = "login", urlPatterns = {"/login"})
 public class login extends HttpServlet {
-    //LLAMAR AL CONTROLADOR - ACCESO A BD
+
     private ClienteJpaController loginService;
 
-    //LLAMA A LA PERSISTENCIA
+
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_Preg2TDS_war_1.0-SNAPSHOTPU");
 
    @Override
     public void init() throws ServletException {
         super.init();
-        //INICIALIZAR CONTROLADOR
+
         loginService = new ClienteJpaController(emf);
     }
 
     @Override
-    // METODO QUE SE EJECUTA - SOLICITUD POST
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // INDICA LA RESPUESTA JSON - FORMATO PARA ESPAÑOL (Ñ,Á...)
         response.setContentType("application/json;charset=UTF-8");
