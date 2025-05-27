@@ -38,7 +38,7 @@ public class ReporteClienterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // Ruta del archivo .jasper compilado
-            String pathJasper = getServletContext().getRealPath("/reporte/reportClientes.jasper");
+            String pathJasper = getServletContext().getRealPath("/reportes/reportClientes.jasper");
 
             // Parámetros si los necesitas
             Map<String, Object> parametros = new HashMap<>();
