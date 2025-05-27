@@ -20,15 +20,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 @WebServlet(name = "ReporteClienterServlet", urlPatterns = {"/ReporteClienterServlet"})
 public class ReporteClienterServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+ 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // Ruta del archivo .jasper compilado
